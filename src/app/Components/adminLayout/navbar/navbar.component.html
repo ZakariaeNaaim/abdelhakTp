@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row><button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>FINERE</h1>
+    <a mat-button (click)="sidenav.close()" [routerLink]="['/admin-layout/']">My Space</a>
+    <span class="example-spacer"></span>
+    <a mat-button (click)="sidenav.close()" [routerLink]="['/admin-layout/utilisateurs']">User</a>
+    <a mat-button (click)="sidenav.close()" [routerLink]="['/admin-layout/']">Dashboard</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="false" side="side">
+    <mat-nav-list>
+      <a mat-list-item *ngIf="checkIfAdmin" (click)="add() "(click)="sidenav.close()" [routerLink]="['/admin-layout/admin']">Admin</a>
+      <a mat-list-item *ngIf="checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/claims']">Claims Tools</a>
+      <a mat-list-item *ngIf="checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/meteore']">Meteore</a>
+      <a mat-list-item *ngIf="!checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/admin-layout/']">Dashboard</a>
+      <a mat-list-item *ngIf="!checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/admin-layout/utilisateurs']">Utilisateurs</a>
+      <a mat-list-item *ngIf="!checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/admin-layout/licences']">Licences</a>
+      <a mat-list-item *ngIf="!checkIfAdmin" (click)="sidenav.close()" [routerLink]="['/admin-layout/batch']">Batch</a>
+      <a mat-list-item *ngIf="!checkIfAdmin" (click)="add()" (click)="sidenav.close()" [routerLink]="['/admin-layout/']">Home</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 94vh">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
